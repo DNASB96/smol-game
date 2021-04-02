@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Player_hurtbox
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Ground
+  - Player hurtbox
+  - Player hitbox
+  - Enemy hurtbox
+  - Enemy hitbox
+  - Panel
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2521868237
+    locked: 0
+  - name: Platforms
+    uniqueID: 1832243709
+    locked: 0
+  - name: Enemies
+    uniqueID: 594058777
+    locked: 0
+  - name: Panels
+    uniqueID: 1919450147
+    locked: 0
+  - name: Player
+    uniqueID: 1052068769
+    locked: 0
+  - name: Foreground
+    uniqueID: 2449517957
+    locked: 0
