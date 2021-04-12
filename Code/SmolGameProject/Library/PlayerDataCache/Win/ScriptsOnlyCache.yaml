@@ -325,7 +325,7 @@ ScriptsOnlyBuild:
     className: CameraController
   - hash:
       serializedVersion: 2
-      Hash: 682988be3ffa99ce1b4099fea6013337
+      Hash: 6a365c2f485163d6235d1aeef98f2a53
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerStatsScript

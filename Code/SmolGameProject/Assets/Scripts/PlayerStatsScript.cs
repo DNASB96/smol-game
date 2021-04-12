@@ -17,7 +17,7 @@ public class PlayerStatsScript : MonoBehaviour
     private int currentHealth = 100;
 
     // Physics related properties
-    public float runspeed { get; } = 1.5f;
+    public float runspeed = 1.5f;
     public float jumpspeed = 1f;
 
     // Reference to the health bar to display the correct player health.
