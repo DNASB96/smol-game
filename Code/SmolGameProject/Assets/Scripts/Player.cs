@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public PlayerStateIdle idleState { get; private set; }
     public PlayerStateRun runState { get; private set; }
     public PlayerStateJump jumpState { get; private set; }
+    public PlayerStateAirborne airborneState { get; private set; }
     private PlayerState nextState;
     #endregion
 
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour
         idleState = new PlayerStateIdle(this);
         runState = new PlayerStateRun(this);
         jumpState = new PlayerStateJump(this);
+        airborneState = new PlayerStateAirborne(this);
         currentState = idleState;
         currentState.OnEnterState();
     }
@@ -82,6 +84,8 @@ public class Player : MonoBehaviour
             currentState.OnEnterState();
         }
         currentState.StateUpdate();
+
+        print("Current state : " + currentState);
 
         #region Temp
         // Temporary test keys for the health bar.

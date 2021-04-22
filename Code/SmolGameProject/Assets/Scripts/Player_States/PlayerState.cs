@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class PlayerState
 {
     /**
-     * Interface for PlayerStates (Player Finite State Machine).
+     * Abstract class for PlayerStates (Player Finite State Machine).
      * 
      * StateUpdate : Code to be executed at each frame.
      * StateFixedUpdate : same as StateUpdate but for rigidbody manipulations.

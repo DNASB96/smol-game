@@ -7,13 +7,11 @@ public class PlayerStateJump : PlayerState
     private Player player;
     private InputPreferencesScript inputPreferences;
     private const string jumpAscentAnimation = "Player_jump_ascent";
-    private const string jumpDescentAnimation = "Player_jump_descent";
 
     public override PlayerState GetNext()
     {
-        if (Input.GetKey(inputPreferences.jumpKey) || !player.isGrounded) return this;
-        if (Input.GetKey(inputPreferences.rightKey) || Input.GetKey(inputPreferences.leftKey)) return player.runState;
-        return player.idleState;
+        if (player.isFalling) return player.airborneState;
+        return this;
     }
 
     public override void OnEnterState()
@@ -23,6 +21,7 @@ public class PlayerStateJump : PlayerState
 
     public override void StateFixedUpdate()
     {
+        // If player is not grounded => double jump?
         if (player.isGrounded) player.Jump();
 
         // Airborne control
@@ -33,7 +32,7 @@ public class PlayerStateJump : PlayerState
 
     public override void StateUpdate()
     {
-        if (player.isFalling) player.PlayAnim(jumpDescentAnimation);
+
     }
 
     public PlayerStateJump(Player p)

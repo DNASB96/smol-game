@@ -2,29 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateRun : PlayerState
+public class PlayerStateAirborne : PlayerState
 {
     private Player player;
     private InputPreferencesScript inputPreferences;
-    private const string runAnimation = "Player_run";
+    private const string airborneAnimation = "Player_jump_descent";
 
     public override PlayerState GetNext()
     {
-        if (player.isFalling && !player.isGrounded) return player.airborneState;
-        if (Input.GetKey(inputPreferences.jumpKey) || !player.isGrounded) return player.jumpState;
-        if (Input.GetKey(inputPreferences.rightKey) || Input.GetKey(inputPreferences.leftKey)) return this;
+        if (!player.isGrounded) return this;
+        if (Input.GetKey(inputPreferences.rightKey) || Input.GetKey(inputPreferences.leftKey)) return player.runState;
         return player.idleState;
     }
 
     public override void OnEnterState()
     {
-        player.PlayAnim(runAnimation);
+        player.PlayAnim(airborneAnimation);
     }
 
     public override void StateFixedUpdate()
     {
+        // Airborne control
         if (Input.GetKey(inputPreferences.rightKey)) player.Run(1);
-        if (Input.GetKey(inputPreferences.leftKey)) player.Run(-1);
+        else if (Input.GetKey(inputPreferences.leftKey)) player.Run(-1);
+        else player.FreezeHorizontalMovement();
     }
 
     public override void StateUpdate()
@@ -32,7 +33,7 @@ public class PlayerStateRun : PlayerState
         
     }
 
-    public PlayerStateRun(Player p)
+    public PlayerStateAirborne(Player p)
     {
         player = p;
         inputPreferences = InputPreferencesScript.Instance;
