@@ -1908,9 +1908,6 @@ GameObject:
   - component: {fileID: 2020358948}
   - component: {fileID: 2020358947}
   - component: {fileID: 2020358949}
-  - component: {fileID: 2020358950}
-  - component: {fileID: 2020358951}
-  - component: {fileID: 2020358952}
   - component: {fileID: 2020358953}
   m_Layer: 9
   m_Name: Player
@@ -2069,49 +2066,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3448652, y: 0.5237725}
   m_EdgeRadius: 0
---- !u!114 &2020358950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2020358943}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1597c7bea53151a4aabd19d5ca959b85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerStats: {fileID: 2020358951}
-  groundCheckC: {fileID: 2040588921}
-  groundCheckR: {fileID: 429097966}
-  groundCheckL: {fileID: 384582661}
---- !u!114 &2020358951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2020358943}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 431ac0a35c0002c45a46162c19464aac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  runspeed: 1.5
-  jumpspeed: 4
---- !u!114 &2020358952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2020358943}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea9269ba8bba76c4fa0d9a4d30fc8b3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMov: {fileID: 2020358950}
 --- !u!114 &2020358953
 MonoBehaviour:
   m_ObjectHideFlags: 0
