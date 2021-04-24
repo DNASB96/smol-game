@@ -17,6 +17,11 @@ Here is a little preview :
 
 ![](smolgame.gif)
 
+## How to play
+
+Download and unzip or clone the repository.
+Open the GameBuild folder and launch the game using "SmolGame.exe".
+
 ## What's next?
 
 Here is a short list of the next few things that should come soon to the game (unordered):
