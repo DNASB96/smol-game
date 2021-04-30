@@ -15,8 +15,8 @@ public class CameraController : MonoBehaviour
 
 
     // Temporary x limits
-    private float leftLim = -2.1f;
-    private float rightLim = 2.1f;
+    private float leftLim = -2f;
+    private float rightLim = 17.8f;
     private float Xpos;
 
     private void Update()

@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     #region Stats
     private int maxHealth = 100;
     private int currentHealth = 100;
-    private float runspeed = 1.5f;
+    private float runspeed = 1.2f;
     private float jumpspeed = 4f;
     #endregion
 
