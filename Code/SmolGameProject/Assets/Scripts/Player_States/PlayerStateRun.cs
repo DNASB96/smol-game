@@ -10,8 +10,8 @@ public class PlayerStateRun : PlayerState
 
     public override PlayerState GetNext()
     {
-        if (player.isFalling && !player.isGrounded) return player.airborneState;
-        if (Input.GetKey(inputPreferences.jumpKey) || !player.isGrounded) return player.jumpState;
+        if (Input.GetKey(inputPreferences.jumpKey)) return player.jumpState;
+        if (!player.isGrounded) return player.airborneState;
         if (Input.GetKey(inputPreferences.rightKey) || Input.GetKey(inputPreferences.leftKey)) return this;
         return player.idleState;
     }
