@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
         }
         currentState.StateUpdate();
 
-        print("Current state : " + currentState);
+        //print("Current state : " + currentState);
 
         #region Temp
         // Temporary test keys for the health bar.
