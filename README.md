@@ -25,5 +25,6 @@ Open the GameBuild folder and launch the game using "SmolGame.exe".
 ## What's next?
 
 Here is a short list of the next few things that should come soon to the game (unordered):
-- simple menu + in game menu
+- simple menu
+- in-game menu
 - first ennemy encounter
