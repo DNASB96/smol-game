@@ -25,6 +25,5 @@ Open the GameBuild folder and launch the game using "SmolGame.exe".
 ## What's next?
 
 Here is a short list of the next few things that should come soon to the game (unordered):
-- background (with a parallax effect)
 - simple menu + in game menu
-- forest level being horizontally extended
+- first ennemy encounter
