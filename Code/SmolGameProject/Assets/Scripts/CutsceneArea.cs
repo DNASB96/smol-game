@@ -13,7 +13,8 @@ public class CutsceneArea : MonoBehaviour
      **/
 
     // Position the player must be put at before triggering the dialog.
-    [SerializeField] private GameObject positionToReach = null;
+    [SerializeField] private GameObject positionToReachPlayer = null;
+    [SerializeField] private GameObject positionToReachCamera = null;
 
     #region Dialog
     // Reference to the dialogUI which contains the rectangle box and the lines that will be displayed upon interaction.
@@ -42,12 +43,8 @@ public class CutsceneArea : MonoBehaviour
         if (!hasBeenTriggered)
         {
             hasBeenTriggered = true;
-            player.TriggerCutscene(positionToReach);
+            player.TriggerCutscene(positionToReachPlayer);
         }
-
-        // Todo : Player.GoToCutsceneState()
-        // Player.RunToX(playerPosition); => pas interagir avec le rb2d directement
-        // start coroutine that checks when player is on the playerpos => Player.Stop()
     }
 
     private void OnTriggerExit2D(Collider2D collision)

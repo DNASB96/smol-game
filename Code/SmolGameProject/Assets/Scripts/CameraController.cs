@@ -13,21 +13,35 @@ public class CameraController : MonoBehaviour
     // The object to follow.
     [SerializeField] GameObject objectToFollow = null;
 
+    #region Singleton Instance
+    private static CameraController _instance;
+    public static CameraController Instance { get { return _instance; } }
+    #endregion
 
-    // Temporary x limits
-    private float leftLim = -2f;
-    private float rightLim = 17.8f;
-    private float Xpos;
+    #region Camera Modes
+    public CameraState currentMode { get; private set; }
+    public CameraStateFollowPlayer followPlayerMode { get; private set; }
+    #endregion
+
+    private void Awake()
+    {
+        // Singleton verification
+        if (_instance != null && _instance != this)
+        {
+            Debug.Log("Camera duplicate destroyed");
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+
+        followPlayerMode = new CameraStateFollowPlayer(this, objectToFollow);
+        currentMode = followPlayerMode;
+    }
 
     private void Update()
     {
-        // update the position of the camera depending on the object position.
-        if(Xpos < 0)
-        {
-            Xpos = Mathf.Max(leftLim, objectToFollow.transform.position.x);
-        } else {
-            Xpos = Mathf.Min(rightLim, objectToFollow.transform.position.x);
-        }
-        transform.position = new Vector3(Xpos, transform.position.y, -10);
+        currentMode.StateUpdate();
     }
 }
