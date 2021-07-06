@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateIdle : PlayerState
+public class PlayerStateIdle : FSMState
 {
     private Player player;
     private InputPreferencesScript inputPreferences;
     private const string idleAnimation = "Player_idle";
 
-    public override PlayerState GetNext()
+    public override FSMState GetNext()
     {
         if (Input.GetKey(inputPreferences.jumpKey)) return player.jumpState;
         if (!player.isGrounded) return player.airborneState;

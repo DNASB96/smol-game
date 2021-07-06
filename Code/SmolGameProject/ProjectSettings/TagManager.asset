@@ -20,7 +20,7 @@ TagManager:
   - Enemy hurtbox
   - Enemy hitbox
   - Panel
-  - 
+  - Cutscene area
   - 
   - 
   - 
@@ -48,11 +48,11 @@ TagManager:
   - name: Platforms
     uniqueID: 1832243709
     locked: 0
-  - name: Enemies
-    uniqueID: 594058777
-    locked: 0
   - name: Panels
     uniqueID: 1919450147
+    locked: 0
+  - name: Enemies
+    uniqueID: 594058777
     locked: 0
   - name: Player
     uniqueID: 1052068769

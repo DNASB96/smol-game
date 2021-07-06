@@ -10,6 +10,12 @@ public class Player : MonoBehaviour
      * Description : this class manages the player as a finite state machine.
      * States are : Idle, Run and Jump.
     **/
+
+    #region Singleton Instance
+    private static Player _instance;
+    public static Player Instance { get { return _instance; } }
+    #endregion
+
     #region Stats
     private int maxHealth = 100;
     private int currentHealth = 100;
@@ -18,12 +24,13 @@ public class Player : MonoBehaviour
     #endregion
 
     #region FSM
-    public PlayerState currentState { get; private set; }
+    public FSMState currentState { get; private set; }
     public PlayerStateIdle idleState { get; private set; }
     public PlayerStateRun runState { get; private set; }
     public PlayerStateJump jumpState { get; private set; }
     public PlayerStateAirborne airborneState { get; private set; }
-    private PlayerState nextState;
+    public PlayerStateCutscene cutsceneState { get; private set; }
+    private FSMState nextState;
     #endregion
 
     #region Grounded
@@ -52,6 +59,17 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        // Singleton verification
+        if (_instance != null && _instance != this)
+        {
+            Debug.Log("Player duplicate destroyed");
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+
         healthBarUI = HealthBarScript.Instance;
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
@@ -65,6 +83,7 @@ public class Player : MonoBehaviour
         runState = new PlayerStateRun(this);
         jumpState = new PlayerStateJump(this);
         airborneState = new PlayerStateAirborne(this);
+        cutsceneState = new PlayerStateCutscene(this);
         currentState = idleState;
         currentState.OnEnterState();
     }
@@ -122,6 +141,7 @@ public class Player : MonoBehaviour
         animator.Play(animationName);
     }
 
+    #region Movement
     public void Run(float flipPlayer)
     {
         // Make the player run.
@@ -145,4 +165,15 @@ public class Player : MonoBehaviour
     {
         rb2d.velocity = new Vector2(0, rb2d.velocity.y);
     }
+    #endregion
+
+    #region Cutscene utilities
+    public void TriggerCutscene(GameObject positionToReach)
+    {
+        cutsceneState.SetPositionToReach(positionToReach);
+        currentState = cutsceneState;
+        // OnEnterState will not be called in the update function, so it is called now.
+        currentState.OnEnterState();
+    }
+    #endregion
 }

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateRun : PlayerState
+public class PlayerStateRun : FSMState
 {
     private Player player;
     private InputPreferencesScript inputPreferences;
     private const string runAnimation = "Player_run";
 
-    public override PlayerState GetNext()
+    public override FSMState GetNext()
     {
         if (Input.GetKey(inputPreferences.jumpKey)) return player.jumpState;
         if (!player.isGrounded) return player.airborneState;

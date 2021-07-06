@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateJump : PlayerState
+public class PlayerStateJump : FSMState
 {
     private Player player;
     private InputPreferencesScript inputPreferences;
     private const string jumpAscentAnimation = "Player_jump_ascent";
 
-    public override PlayerState GetNext()
+    public override FSMState GetNext()
     {
         if (player.isFalling) return player.airborneState;
         return this;

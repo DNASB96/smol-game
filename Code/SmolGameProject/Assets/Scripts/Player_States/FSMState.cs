@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerState
+public abstract class FSMState
 {
     /**
      * Abstract class for PlayerStates (Player Finite State Machine).
@@ -15,7 +15,7 @@ public abstract class PlayerState
      * GetNext : check for transitions to another state (or return itself if the player stays in the same state).
     **/
 
-    public abstract PlayerState GetNext();
+    public abstract FSMState GetNext();
 
     public abstract void OnEnterState();
 

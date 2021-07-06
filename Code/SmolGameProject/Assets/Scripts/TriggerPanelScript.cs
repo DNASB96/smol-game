@@ -29,7 +29,7 @@ public class TriggerPanelScript : MonoBehaviour
     // Collection of dialog lines that will appear when the panel is interacted with.
     public string[] sentences;
 
-    // Inder to keep track of the current displayed sentence.
+    // Index to keep track of the current displayed sentence.
     private int sentences_index = 0;
 
     private void Start()
