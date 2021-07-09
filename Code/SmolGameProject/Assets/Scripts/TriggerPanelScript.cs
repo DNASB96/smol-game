@@ -24,7 +24,7 @@ public class TriggerPanelScript : MonoBehaviour
     private DialogUIScript dialogUI;
 
     // Reference to the input preferences to get the interact key.
-    private InputPreferencesScript inputPreferences;
+    private InputManager _inputManager;
 
     // Collection of dialog lines that will appear when the panel is interacted with.
     public string[] sentences;
@@ -35,13 +35,14 @@ public class TriggerPanelScript : MonoBehaviour
     private void Start()
     {
         dialogUI = DialogUIScript.Instance;
-        inputPreferences = InputPreferencesScript.Instance;
+        _inputManager = InputManager.Instance;
     }
 
     private void Update()
     {
         // Begin or continue the panel dialog when the interact key is pressed while standing in front of the panel.
-        if(buttonIsDisplayed && Input.GetKeyDown(inputPreferences.interactKey))
+        //if(buttonIsDisplayed && Input.GetKeyDown(inputPreferences.interactKey))
+        if (buttonIsDisplayed && _inputManager.GetInputDown(_inputManager.InteractKey))
         {
             if(sentences_index < sentences.Length)
             {

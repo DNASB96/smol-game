@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class PlayerStateIdle : FSMState
 {
-    private Player player;
-    private InputPreferencesScript inputPreferences;
+    private Player _player;
+    private InputManager _inputManager;
 
     public override FSMState GetNext()
     {
-        if (Input.GetKey(inputPreferences.jumpKey)) return player.jumpState;
-        if (!player.isGrounded) return player.airborneState;
-        if (Input.GetKey(inputPreferences.rightKey) || Input.GetKey(inputPreferences.leftKey)) return player.runState;
+        if (_inputManager.GetInput(_inputManager.JumpKey)) return _player.jumpState;
+        if (!_player.isGrounded) return _player.airborneState;
+        if (_inputManager.GetInput(_inputManager.RightKey) || _inputManager.GetInput(_inputManager.LeftKey)) return _player.runState;
         return this;
     }
     
     public override void OnEnterState()
     {
-        player.PlayAnim(Player.idleAnimation);
+        _player.PlayAnim(Player.idleAnimation);
     }
 
     public override void StateFixedUpdate()
     {
-        if(player.isGrounded)
+        if(_player.isGrounded)
         {
-            player.FreezePosition();
+            _player.FreezePosition();
         }
     }
 
@@ -35,7 +35,7 @@ public class PlayerStateIdle : FSMState
 
     public PlayerStateIdle(Player p)
     {
-        player = p;
-        inputPreferences = InputPreferencesScript.Instance;
+        _player = p;
+        _inputManager = InputManager.Instance;
     }
 }

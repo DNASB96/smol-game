@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class PlayerStateAirborne : FSMState
 {
-    private Player player;
-    private InputPreferencesScript inputPreferences;
+    private Player _player;
+    private InputManager _inputManager;
 
     public override FSMState GetNext()
     {
-        if (!player.isGrounded) return this;
-        if (Input.GetKey(inputPreferences.rightKey) || Input.GetKey(inputPreferences.leftKey)) return player.runState;
-        return player.idleState;
+        if (!_player.isGrounded) return this;
+        if (_inputManager.GetInput(_inputManager.RightKey) || _inputManager.GetInput(_inputManager.LeftKey)) return _player.runState;
+        return _player.idleState;
     }
 
     public override void OnEnterState()
     {
-        player.PlayAnim(Player.airborneAnimation);
+        _player.PlayAnim(Player.airborneAnimation);
     }
 
     public override void StateFixedUpdate()
     {
-        // Airborne control
-        if (Input.GetKey(inputPreferences.rightKey)) player.Run(1);
-        else if (Input.GetKey(inputPreferences.leftKey)) player.Run(-1);
-        else player.FreezeHorizontalMovement();
+        if (_inputManager.GetInput(_inputManager.RightKey)) _player.Run(1);
+        else if (_inputManager.GetInput(_inputManager.LeftKey)) _player.Run(-1);
+        else _player.FreezeHorizontalMovement();
     }
 
     public override void StateUpdate()
@@ -34,7 +33,7 @@ public class PlayerStateAirborne : FSMState
 
     public PlayerStateAirborne(Player p)
     {
-        player = p;
-        inputPreferences = InputPreferencesScript.Instance;
+        _player = p;
+        _inputManager = InputManager.Instance;
     }
 }

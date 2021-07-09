@@ -43,7 +43,7 @@ public class PlayerStateCutscene : FSMState
 
     public override void StateUpdate()
     {
-
+        // Turn the player towards the npc
     }
 
     public void SetPositionToReach(GameObject o)

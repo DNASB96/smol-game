@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class PlayerStateRun : FSMState
 {
-    private Player player;
-    private InputPreferencesScript inputPreferences;
+    private readonly Player _player;
+    private InputManager _inputManager;
 
     public override FSMState GetNext()
     {
-        if (Input.GetKey(inputPreferences.jumpKey)) return player.jumpState;
-        if (!player.isGrounded) return player.airborneState;
-        if (Input.GetKey(inputPreferences.rightKey) || Input.GetKey(inputPreferences.leftKey)) return this;
-        return player.idleState;
+        if (_inputManager.GetInput(_inputManager.JumpKey)) return _player.jumpState;
+        if (!_player.isGrounded) return _player.airborneState;
+        if (_inputManager.GetInput(_inputManager.RightKey) || _inputManager.GetInput(_inputManager.LeftKey)) return this;
+        return _player.idleState;
     }
 
     public override void OnEnterState()
     {
-        player.PlayAnim(Player.runAnimation);
+        _player.PlayAnim(Player.runAnimation);
     }
 
     public override void StateFixedUpdate()
     {
-        if (Input.GetKey(inputPreferences.rightKey)) player.Run(1);
-        if (Input.GetKey(inputPreferences.leftKey)) player.Run(-1);
+        if (_inputManager.GetInput(_inputManager.RightKey)) _player.Run(1);
+        if (_inputManager.GetInput(_inputManager.LeftKey)) _player.Run(-1);
     }
 
     public override void StateUpdate()
@@ -33,7 +33,7 @@ public class PlayerStateRun : FSMState
 
     public PlayerStateRun(Player p)
     {
-        player = p;
-        inputPreferences = InputPreferencesScript.Instance;
+        _player = p;
+        _inputManager = InputManager.Instance;
     }
 }
