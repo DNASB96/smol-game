@@ -17,26 +17,29 @@ public class EnnemyLamia : MonoBehaviour
     #endregion
 
     #region FSM
-    public FSMState currentState { get; private set; }
-    public LamiaStateIdle idleState { get; private set; }
-    private FSMState nextState;
+    private FSMState _currentState;
+    private LamiaStateIdle _idleState;
+    private FSMState _nextState;
+
+    public FSMState CurrentState { get { return _currentState; } }
+    public LamiaStateIdle IdleState { get { return _idleState; } }
     #endregion
 
     #region Physics
-    private Rigidbody2D rb2d;
+    private Rigidbody2D _rb2d;
     #endregion
 
     private void Awake()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        _rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        idleState = new LamiaStateIdle(this);
-        currentState = idleState;
-        currentState.OnEnterState();
+        _idleState = new LamiaStateIdle(this);
+        _currentState = _idleState;
+        _currentState.OnEnterState();
     }
 
     // Update is called once per frame

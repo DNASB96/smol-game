@@ -20,11 +20,11 @@ public class HealthBarScript : MonoBehaviour
     public static HealthBarScript Instance { get { return _instance; } }
 
     // Slider that composes the health bar.
-    private Slider curHealthSlider;
+    private Slider _currentHealthSlider;
 
     private void Awake()
     {
-        curHealthSlider = GetComponent<Slider>();
+        _currentHealthSlider = GetComponent<Slider>();
 
         // Ensure uniqueness by destroying duplicates
         if (_instance != null && _instance != this)
@@ -40,6 +40,6 @@ public class HealthBarScript : MonoBehaviour
     public void SetHealth(int newHealth)
     {
         // Values should be 
-        curHealthSlider.value = newHealth;
+        _currentHealthSlider.value = newHealth;
     }
 }

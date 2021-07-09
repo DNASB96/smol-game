@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PlayerStateCutscene : FSMState
 {
-    private Player player;
-    private GameObject positionToReach = null;
-    private bool positionIsReached = false;
-
+    private Player _player;
+    private GameObject _positionToReach = null;
+    private bool _positionIsReached = false;
 
     public override FSMState GetNext()
     {
@@ -17,26 +16,26 @@ public class PlayerStateCutscene : FSMState
 
     public override void OnEnterState()
     {
-        player.PlayAnim(Player.runAnimation);
+        _player.PlayAnim(Player.runAnimation);
         // TODO : What if player is mid jumping? => wait for change of states
     }
 
     public override void StateFixedUpdate()
     {
         // run movement utilities
-        if (!positionIsReached)
+        if (!_positionIsReached)
         {
-            if (player.transform.position.x < positionToReach.transform.position.x)
-                player.Run(1);
+            if (_player.transform.position.x < _positionToReach.transform.position.x)
+                _player.Run(1);
             else
-                player.Run(-1);
+                _player.Run(-1);
 
             // Check if the player is close enough (2 pixels) to the position
-            if (Mathf.Abs(player.transform.position.x - positionToReach.transform.position.x) < 0.02)
+            if (Mathf.Abs(_player.transform.position.x - _positionToReach.transform.position.x) < 0.02)
             {
-                positionIsReached = true;
-                player.FreezeHorizontalMovement();
-                player.PlayAnim(Player.idleAnimation);
+                _positionIsReached = true;
+                _player.FreezeHorizontalMovement();
+                _player.PlayAnim(Player.idleAnimation);
             }
         }
     }
@@ -48,11 +47,11 @@ public class PlayerStateCutscene : FSMState
 
     public void SetPositionToReach(GameObject o)
     {
-        positionToReach = o;
+        _positionToReach = o;
     }
 
     public PlayerStateCutscene(Player p)
     {
-        player = p;
+        _player = p;
     }
 }

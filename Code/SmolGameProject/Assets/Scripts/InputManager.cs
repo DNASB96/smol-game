@@ -38,7 +38,7 @@ public class InputManager : MonoBehaviour
     #endregion
 
     #region Lock input
-    private bool inputIsLocked = false;
+    private bool _inputIsLocked = false;
     #endregion
 
     private void Awake()
@@ -54,7 +54,7 @@ public class InputManager : MonoBehaviour
 
     public bool GetInput(InputKey k)
     {
-        if (inputIsLocked)
+        if (_inputIsLocked)
         {
             return false;
         }
@@ -66,7 +66,7 @@ public class InputManager : MonoBehaviour
 
     public bool GetInputDown(InputKey k)
     {
-        if (inputIsLocked)
+        if (_inputIsLocked)
         {
             return k.CachedIsDown;
         }
@@ -83,11 +83,11 @@ public class InputManager : MonoBehaviour
 
     public void LockInput()
     {
-
+        _inputIsLocked = true;
     }
 
     public void UnlockInput()
     {
-
+        _inputIsLocked = false;
     }
 }

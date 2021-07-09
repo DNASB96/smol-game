@@ -17,33 +17,42 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Stats
-    private int maxHealth = 100;
-    private int currentHealth = 100;
-    private float runspeed = 1.2f;
-    private float jumpspeed = 4f;
+    private readonly int _maxHealth = 100;
+    private int _currentHealth = 100;
+    private readonly float _runspeed = 1.2f;
+    private readonly float _jumpspeed = 4f;
     #endregion
 
     #region FSM
-    public FSMState currentState { get; private set; }
-    public PlayerStateIdle idleState { get; private set; }
-    public PlayerStateRun runState { get; private set; }
-    public PlayerStateJump jumpState { get; private set; }
-    public PlayerStateAirborne airborneState { get; private set; }
-    public PlayerStateCutscene cutsceneState { get; private set; }
-    private FSMState nextState;
+    private FSMState _nextState;
+    private FSMState _currentState;
+    private PlayerStateIdle _idleState;
+    private PlayerStateRun _runState;
+    private PlayerStateJump _jumpState;
+    private PlayerStateAirborne _airborneState;
+    private PlayerStateCutscene _cutsceneState;
+
+    public FSMState CurrentState { get { return _currentState; } }
+    public PlayerStateIdle IdleState { get { return _idleState; } }
+    public PlayerStateRun RunState { get { return _runState; } }
+    public PlayerStateJump JumpState { get { return _jumpState; } }
+    public PlayerStateAirborne AirborneState { get { return _airborneState; } }
+    public PlayerStateCutscene CutsceneState { get { return _cutsceneState; } }
     #endregion
 
     #region Grounded
     // Wether the player is on the ground.
-    public bool isGrounded { get; private set; } = false;
+    private bool _isGrounded = false;
+    public bool IsGrounded { get { return _isGrounded; } }
+
     // 3 Points slightly underneath the player to check if the player is grounded.
-    [SerializeField] private Transform groundCheckC = null;
-    [SerializeField] private Transform groundCheckR = null;
-    [SerializeField] private Transform groundCheckL = null;
+    [SerializeField] private Transform _groundCheckC = null;
+    [SerializeField] private Transform _groundCheckR = null;
+    [SerializeField] private Transform _groundCheckL = null;
     #endregion
 
     #region Animation
-    private Animator animator;
+    private Animator _animator;
     public const string idleAnimation = "Player_idle";
     public const string runAnimation = "Player_run";
     public const string jumpAscentAnimation = "Player_jump_ascent";
@@ -51,13 +60,14 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Physics
-    private Rigidbody2D rb2d;
-    public bool isFalling { get; private set; } = false;
+    private Rigidbody2D _rb2d;
+    private bool _isFalling = false;
+    public bool IsFalling { get { return _isFalling; } }
     #endregion
 
     #region UI elements
     // Reference to the health bar to display the correct player health.
-    private HealthBarScript healthBarUI;
+    private HealthBarScript _healthBarUI;
     #endregion
 
 
@@ -74,41 +84,41 @@ public class Player : MonoBehaviour
             _instance = this;
         }
 
-        healthBarUI = HealthBarScript.Instance;
-        animator = GetComponent<Animator>();
-        rb2d = GetComponent<Rigidbody2D>();
+        _healthBarUI = HealthBarScript.Instance;
+        _animator = GetComponent<Animator>();
+        _rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         // States depends on inputpreferences, so they need to be initialized in start instead of awake
-        idleState = new PlayerStateIdle(this);
-        runState = new PlayerStateRun(this);
-        jumpState = new PlayerStateJump(this);
-        airborneState = new PlayerStateAirborne(this);
-        cutsceneState = new PlayerStateCutscene(this);
-        currentState = idleState;
-        currentState.OnEnterState();
+        _idleState = new PlayerStateIdle(this);
+        _runState = new PlayerStateRun(this);
+        _jumpState = new PlayerStateJump(this);
+        _airborneState = new PlayerStateAirborne(this);
+        _cutsceneState = new PlayerStateCutscene(this);
+        _currentState = _idleState;
+        _cutsceneState.OnEnterState();
     }
 
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics2D.Linecast(transform.position, groundCheckC.position, 1 << LayerMask.NameToLayer("Ground")) ||
-            Physics2D.Linecast(transform.position, groundCheckR.position, 1 << LayerMask.NameToLayer("Ground")) ||
-            Physics2D.Linecast(transform.position, groundCheckL.position, 1 << LayerMask.NameToLayer("Ground"));
-        isFalling = rb2d.velocity.y < 0 && !isGrounded;
+        _isGrounded = Physics2D.Linecast(transform.position, _groundCheckC.position, 1 << LayerMask.NameToLayer("Ground")) ||
+            Physics2D.Linecast(transform.position, _groundCheckR.position, 1 << LayerMask.NameToLayer("Ground")) ||
+            Physics2D.Linecast(transform.position, _groundCheckL.position, 1 << LayerMask.NameToLayer("Ground"));
+        _isFalling = _rb2d.velocity.y < 0 && !_isGrounded;
 
-        nextState = currentState.GetNext();
-        if(nextState != currentState)
+        _nextState = _currentState.GetNext();
+        if(_nextState != _currentState)
         {
-            currentState = nextState;
-            currentState.OnEnterState();
+            _currentState = _nextState;
+            _currentState.OnEnterState();
         }
-        currentState.StateUpdate();
+        _currentState.StateUpdate();
 
-        //print("Current state : " + currentState);
+        //print("Current state : " + _currentState);
 
         #region Temp
         // Temporary test keys for the health bar.
@@ -125,24 +135,24 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        currentState.StateFixedUpdate();
+        _currentState.StateFixedUpdate();
     }
 
     public void DealDamage(int damageAmount)
     {
-        currentHealth = Mathf.Max(0, currentHealth - damageAmount);
-        healthBarUI.SetHealth(currentHealth);
+        _currentHealth = Mathf.Max(0, _currentHealth - damageAmount);
+        _healthBarUI.SetHealth(_currentHealth);
     }
 
     public void Heal(int healAmount)
     {
-        currentHealth = Mathf.Min(maxHealth, currentHealth + healAmount);
-        healthBarUI.SetHealth(currentHealth);
+        _currentHealth = Mathf.Min(_maxHealth, _currentHealth + healAmount);
+        _healthBarUI.SetHealth(_currentHealth);
     }
 
     public void PlayAnim(string animationName)
     {
-        animator.Play(animationName);
+        _animator.Play(animationName);
     }
 
     #region Movement
@@ -150,34 +160,34 @@ public class Player : MonoBehaviour
     {
         // Make the player run.
         // The flipPlayer parameter must be either 1 or-1 and is used to flip the player (and all its sub components such as hitboxes, sprites, etc).
-        rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
-        rb2d.velocity = new Vector2(flipPlayer * runspeed, rb2d.velocity.y);
+        _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+        _rb2d.velocity = new Vector2(flipPlayer * _runspeed, _rb2d.velocity.y);
         transform.localScale = new Vector3(flipPlayer * 1f, 1f, 1f);
     }
 
     public void Jump()
     {
-        rb2d.velocity = new Vector2(rb2d.velocity.x, jumpspeed);
+        _rb2d.velocity = new Vector2(_rb2d.velocity.x, _jumpspeed);
     }
 
     public void FreezePosition()
     {
-        rb2d.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
+        _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
     }
 
     public void FreezeHorizontalMovement()
     {
-        rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+        _rb2d.velocity = new Vector2(0, _rb2d.velocity.y);
     }
     #endregion
 
     #region Cutscene utilities
     public void TriggerCutscene(GameObject positionToReach)
     {
-        cutsceneState.SetPositionToReach(positionToReach);
-        currentState = cutsceneState;
+        _cutsceneState.SetPositionToReach(positionToReach);
+        _currentState = _cutsceneState;
         // OnEnterState will not be called in the update function, so it is called now.
-        currentState.OnEnterState();
+        _currentState.OnEnterState();
     }
     #endregion
 }

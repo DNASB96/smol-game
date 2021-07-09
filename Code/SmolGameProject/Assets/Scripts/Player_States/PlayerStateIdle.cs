@@ -9,9 +9,9 @@ public class PlayerStateIdle : FSMState
 
     public override FSMState GetNext()
     {
-        if (_inputManager.GetInput(_inputManager.JumpKey)) return _player.jumpState;
-        if (!_player.isGrounded) return _player.airborneState;
-        if (_inputManager.GetInput(_inputManager.RightKey) || _inputManager.GetInput(_inputManager.LeftKey)) return _player.runState;
+        if (_inputManager.GetInput(_inputManager.JumpKey)) return _player.JumpState;
+        if (!_player.IsGrounded) return _player.AirborneState;
+        if (_inputManager.GetInput(_inputManager.RightKey) || _inputManager.GetInput(_inputManager.LeftKey)) return _player.RunState;
         return this;
     }
     
@@ -22,7 +22,7 @@ public class PlayerStateIdle : FSMState
 
     public override void StateFixedUpdate()
     {
-        if(_player.isGrounded)
+        if(_player.IsGrounded)
         {
             _player.FreezePosition();
         }

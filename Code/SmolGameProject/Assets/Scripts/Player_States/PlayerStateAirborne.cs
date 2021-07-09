@@ -9,9 +9,9 @@ public class PlayerStateAirborne : FSMState
 
     public override FSMState GetNext()
     {
-        if (!_player.isGrounded) return this;
-        if (_inputManager.GetInput(_inputManager.RightKey) || _inputManager.GetInput(_inputManager.LeftKey)) return _player.runState;
-        return _player.idleState;
+        if (!_player.IsGrounded) return this;
+        if (_inputManager.GetInput(_inputManager.RightKey) || _inputManager.GetInput(_inputManager.LeftKey)) return _player.RunState;
+        return _player.IdleState;
     }
 
     public override void OnEnterState()

@@ -7,6 +7,7 @@ public class InputKey
     /**
      * Description : Stores information for a single input key.
      * Cached attributes specify the last state (wether is was pressed or not).
+     * Those are lazily evaluated.
     **/
 
     private KeyCode _preferredKey;

@@ -693,8 +693,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db67c8ab68c2a54983a162a1e8102fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffect: 0.75
-  mainCamera: {fileID: 519420028}
+  _parallaxEffect: 0.75
+  _mainCamera: {fileID: 519420028}
 --- !u!1001 &232249163
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -706,6 +706,11 @@ PrefabInstance:
         type: 3}
       propertyPath: sentences.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
+        type: 3}
+      propertyPath: _sentences.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
         type: 3}
@@ -726,6 +731,16 @@ PrefabInstance:
         type: 3}
       propertyPath: sentences.Array.data[3]
       value: Have a nice day, bye ^^
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
+        type: 3}
+      propertyPath: _sentences.Array.data[0]
+      value: Sadly, this is already the end of this very short demo...
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
+        type: 3}
+      propertyPath: _sentences.Array.data[1]
+      value: Hopefully the next release should come somewhat soonish...
       objectReference: {fileID: 0}
     - target: {fileID: 8418166601494029845, guid: 6d9d92dd326b51b45a2a480345cc704b,
         type: 3}
@@ -1973,7 +1988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c1bcc93957ae794993456d80668aee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToFollow: {fileID: 2020358943}
+  _objectToFollow: {fileID: 2020358943}
 --- !u!1 &549941269
 GameObject:
   m_ObjectHideFlags: 0
@@ -2778,6 +2793,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
         type: 3}
+      propertyPath: _sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
+        type: 3}
       propertyPath: sentences.Array.data[0]
       value: There's a health bar but no damaging hazards or enemies...
       objectReference: {fileID: 0}
@@ -2791,6 +2811,21 @@ PrefabInstance:
         type: 3}
       propertyPath: sentences.Array.data[2]
       value: I hope you won't mind the lack of realism
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
+        type: 3}
+      propertyPath: _sentences.Array.data[0]
+      value: About controls, you can use the arrow keys to move and spacebar to jump.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
+        type: 3}
+      propertyPath: _sentences.Array.data[1]
+      value: You can also interact with the Z key.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
+        type: 3}
+      propertyPath: _sentences.Array.data[2]
+      value: So far the health bar is useless but you can test it with B and N...
       objectReference: {fileID: 0}
     - target: {fileID: 8418166601494029845, guid: 6d9d92dd326b51b45a2a480345cc704b,
         type: 3}
@@ -2987,8 +3022,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd1703da44959c40a574e77ad1a54f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialog: {fileID: 921260538}
-  dialogText: {fileID: 169507354}
+  _dialog: {fileID: 921260538}
+  _dialogText: {fileID: 169507354}
 --- !u!1 &1149639305
 GameObject:
   m_ObjectHideFlags: 0
@@ -3394,8 +3429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db67c8ab68c2a54983a162a1e8102fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffect: 0.25
-  mainCamera: {fileID: 519420028}
+  _parallaxEffect: 0.25
+  _mainCamera: {fileID: 519420028}
 --- !u!1 &1291690010
 GameObject:
   m_ObjectHideFlags: 0
@@ -3554,8 +3589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db67c8ab68c2a54983a162a1e8102fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffect: 0.5
-  mainCamera: {fileID: 519420028}
+  _parallaxEffect: 0.5
+  _mainCamera: {fileID: 519420028}
 --- !u!1 &1375508271
 GameObject:
   m_ObjectHideFlags: 0
@@ -3711,9 +3746,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e59c72772b679c4c8b0f39ab191a1d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionToReachPlayer: {fileID: 1299387877}
-  positionToReachCamera: {fileID: 793377412}
-  sentences: []
+  _positionToReachPlayer: {fileID: 1299387877}
+  _positionToReachCamera: {fileID: 793377412}
 --- !u!1 &1475607598
 GameObject:
   m_ObjectHideFlags: 0
@@ -4399,6 +4433,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
         type: 3}
+      propertyPath: _sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
+        type: 3}
       propertyPath: sentences.Array.data[0]
       value: I heard the dev is currently working on sprites...
       objectReference: {fileID: 0}
@@ -4406,6 +4445,11 @@ PrefabInstance:
         type: 3}
       propertyPath: sentences.Array.data[1]
       value: Maybe we'll see some ennemies next time... Who knows?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
+        type: 3}
+      propertyPath: _sentences.Array.data[0]
+      value: Wait! There's something ahead...
       objectReference: {fileID: 0}
     - target: {fileID: 8418166601494029845, guid: 6d9d92dd326b51b45a2a480345cc704b,
         type: 3}
@@ -4876,9 +4920,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e371552ae5a591f47a8b498218214159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCheckC: {fileID: 2040588921}
-  groundCheckR: {fileID: 429097966}
-  groundCheckL: {fileID: 384582661}
+  _groundCheckC: {fileID: 2040588921}
+  _groundCheckR: {fileID: 429097966}
+  _groundCheckL: {fileID: 384582661}
 --- !u!1 &2032216101
 GameObject:
   m_ObjectHideFlags: 0
@@ -5093,8 +5137,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
         type: 3}
+      propertyPath: bleh.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
+        type: 3}
       propertyPath: sentences.Array.size
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
+        type: 3}
+      propertyPath: _sentences.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
         type: 3}
@@ -5125,6 +5179,21 @@ PrefabInstance:
         type: 3}
       propertyPath: sentences.Array.data[5]
       value: Have fun!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
+        type: 3}
+      propertyPath: _sentences.Array.data[0]
+      value: Hello Adventurer! Welcome to this very first demo of...
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
+        type: 3}
+      propertyPath: _sentences.Array.data[1]
+      value: A still untitled game.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418166601494029832, guid: 6d9d92dd326b51b45a2a480345cc704b,
+        type: 3}
+      propertyPath: _sentences.Array.data[2]
+      value: Maybe
       objectReference: {fileID: 0}
     - target: {fileID: 8418166601494029845, guid: 6d9d92dd326b51b45a2a480345cc704b,
         type: 3}

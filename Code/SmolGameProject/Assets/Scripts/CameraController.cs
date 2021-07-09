@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     **/
 
     // The object to follow.
-    [SerializeField] GameObject objectToFollow = null;
+    [SerializeField] GameObject _objectToFollow = null;
 
     #region Singleton Instance
     private static CameraController _instance;
@@ -19,8 +19,12 @@ public class CameraController : MonoBehaviour
     #endregion
 
     #region Camera Modes
-    public CameraState currentMode { get; private set; }
-    public CameraStateFollowPlayer followPlayerMode { get; private set; }
+    private CameraState _currentMode;
+    private CameraStateFollowPlayer _followPlayerMode;
+
+
+    public CameraState CurrentMode { get { return _currentMode; } }
+    public CameraStateFollowPlayer FollowPlayerMode { get { return _followPlayerMode; } }
     #endregion
 
     private void Awake()
@@ -36,12 +40,12 @@ public class CameraController : MonoBehaviour
             _instance = this;
         }
 
-        followPlayerMode = new CameraStateFollowPlayer(this, objectToFollow);
-        currentMode = followPlayerMode;
+        _followPlayerMode = new CameraStateFollowPlayer(this, _objectToFollow);
+        _currentMode = _followPlayerMode;
     }
 
     private void Update()
     {
-        currentMode.StateUpdate();
+        _currentMode.StateUpdate();
     }
 }

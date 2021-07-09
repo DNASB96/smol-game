@@ -9,19 +9,19 @@ public class PlayerStateJump : FSMState
 
     public override FSMState GetNext()
     {
-        if (_player.isFalling) return _player.airborneState;
+        if (_player.IsFalling) return _player.AirborneState;
         return this;
     }
 
     public override void OnEnterState()
     {
-        if (_player.isGrounded) _player.PlayAnim(Player.jumpAscentAnimation);
+        if (_player.IsGrounded) _player.PlayAnim(Player.jumpAscentAnimation);
     }
 
     public override void StateFixedUpdate()
     {
         // If player is not grounded => double jump?
-        if (_player.isGrounded) _player.Jump();
+        if (_player.IsGrounded) _player.Jump();
 
         // Airborne control
         if (_inputManager.GetInput(_inputManager.RightKey)) _player.Run(1);

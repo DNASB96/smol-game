@@ -13,37 +13,37 @@ public class CutsceneArea : MonoBehaviour
      **/
 
     // Position the player must be put at before triggering the dialog.
-    [SerializeField] private GameObject positionToReachPlayer = null;
-    [SerializeField] private GameObject positionToReachCamera = null;
+    [SerializeField] private GameObject _positionToReachPlayer = null;
+    [SerializeField] private GameObject _positionToReachCamera = null;
 
     #region Dialog
     // Reference to the dialogUI which contains the rectangle box and the lines that will be displayed upon interaction.
-    private DialogUIScript dialogUI;
+    private DialogUIScript _dialogUI;
 
     // Collection of dialog lines that will appear when the panel is interacted with.
-    public string[] sentences;
+    //public string[] sentences;
 
     // Index to keep track of the current displayed sentence.
     //private int sentences_index = 0;
     #endregion
 
-    private bool hasBeenTriggered = false;
+    private bool _hasBeenTriggered = false;
 
-    private Player player;
+    private Player _player;
 
     private void Start()
     {
-        dialogUI = DialogUIScript.Instance;
-        player = Player.Instance;
+        _dialogUI = DialogUIScript.Instance;
+        _player = Player.Instance;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Player entered the cutscene area
-        if (!hasBeenTriggered)
+        if (!_hasBeenTriggered)
         {
-            hasBeenTriggered = true;
-            player.TriggerCutscene(positionToReachPlayer);
+            _hasBeenTriggered = true;
+            _player.TriggerCutscene(_positionToReachPlayer);
         }
     }
 

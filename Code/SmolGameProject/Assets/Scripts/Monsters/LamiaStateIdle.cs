@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LamiaStateIdle : FSMState
 {
-    private EnnemyLamia lamia;
+    private EnnemyLamia _lamia;
 
     public override FSMState GetNext()
     {
@@ -29,6 +29,6 @@ public class LamiaStateIdle : FSMState
 
     public LamiaStateIdle(EnnemyLamia l)
     {
-        lamia = l;
+        _lamia = l;
     }
 }

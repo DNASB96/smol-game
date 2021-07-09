@@ -18,13 +18,13 @@ public class DialogUIScript : MonoBehaviour
     public static DialogUIScript Instance { get { return _instance; } }
 
     // Game Object containing both the dialog Text and the dialog rectangle box.
-    [SerializeField] private GameObject dialog = null;
+    [SerializeField] private GameObject _dialog = null;
 
     // The game text containing the current dialog line being displayed.
-    [SerializeField] private TextMeshProUGUI dialogText = null;
+    [SerializeField] private TextMeshProUGUI _dialogText = null;
 
     // The current sentence that needs to be displayed.
-    private string sentenceToType = "";
+    private string _sentenceToType = "";
 
     private void Awake()
     {
@@ -42,14 +42,14 @@ public class DialogUIScript : MonoBehaviour
     public void DisplayNextSentence(string sentence)
     {
         // Activate the dialog if it is not already, stop the typing of the current sentence and start the new one.
-        if(!dialog.activeSelf)
+        if(!_dialog.activeSelf)
         {
-            dialog.SetActive(true);
-            dialogText.text = "";
+            _dialog.SetActive(true);
+            _dialogText.text = "";
         }
         StopAllCoroutines();
-        dialogText.text = "";
-        sentenceToType = sentence;
+        _dialogText.text = "";
+        _sentenceToType = sentence;
         StartCoroutine(TypeDialogSentence());
     }
 
@@ -57,16 +57,16 @@ public class DialogUIScript : MonoBehaviour
     {
         // Stop typing the current sentence and hide the dialog. 
         StopAllCoroutines();
-        dialogText.text = "";
-        dialog.SetActive(false);
+        _dialogText.text = "";
+        _dialog.SetActive(false);
     }
 
     IEnumerator TypeDialogSentence()
     {
         // Coroutine used to display the letters of the line of dialog one by one (one per frame).
-        foreach (char letter in sentenceToType.ToCharArray())
+        foreach (char letter in _sentenceToType.ToCharArray())
         {
-            dialogText.text += letter;
+            _dialogText.text += letter;
             yield return new WaitForEndOfFrame();
         }
     }
