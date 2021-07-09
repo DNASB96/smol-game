@@ -6,7 +6,6 @@ public class PlayerStateAirborne : FSMState
 {
     private Player player;
     private InputPreferencesScript inputPreferences;
-    private const string airborneAnimation = "Player_jump_descent";
 
     public override FSMState GetNext()
     {
@@ -17,7 +16,7 @@ public class PlayerStateAirborne : FSMState
 
     public override void OnEnterState()
     {
-        player.PlayAnim(airborneAnimation);
+        player.PlayAnim(Player.airborneAnimation);
     }
 
     public override void StateFixedUpdate()

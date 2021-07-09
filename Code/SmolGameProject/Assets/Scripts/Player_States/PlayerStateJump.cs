@@ -6,7 +6,6 @@ public class PlayerStateJump : FSMState
 {
     private Player player;
     private InputPreferencesScript inputPreferences;
-    private const string jumpAscentAnimation = "Player_jump_ascent";
 
     public override FSMState GetNext()
     {
@@ -16,7 +15,7 @@ public class PlayerStateJump : FSMState
 
     public override void OnEnterState()
     {
-        if (player.isGrounded) player.PlayAnim(jumpAscentAnimation);
+        if (player.isGrounded) player.PlayAnim(Player.jumpAscentAnimation);
     }
 
     public override void StateFixedUpdate()

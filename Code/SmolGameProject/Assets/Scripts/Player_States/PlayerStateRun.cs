@@ -6,7 +6,6 @@ public class PlayerStateRun : FSMState
 {
     private Player player;
     private InputPreferencesScript inputPreferences;
-    private const string runAnimation = "Player_run";
 
     public override FSMState GetNext()
     {
@@ -18,7 +17,7 @@ public class PlayerStateRun : FSMState
 
     public override void OnEnterState()
     {
-        player.PlayAnim(runAnimation);
+        player.PlayAnim(Player.runAnimation);
     }
 
     public override void StateFixedUpdate()

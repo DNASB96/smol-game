@@ -44,6 +44,10 @@ public class Player : MonoBehaviour
 
     #region Animation
     private Animator animator;
+    public const string idleAnimation = "Player_idle";
+    public const string runAnimation = "Player_run";
+    public const string jumpAscentAnimation = "Player_jump_ascent";
+    public const string airborneAnimation = "Player_jump_descent";
     #endregion
 
     #region Physics

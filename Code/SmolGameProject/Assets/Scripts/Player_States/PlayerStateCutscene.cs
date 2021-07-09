@@ -8,8 +8,6 @@ public class PlayerStateCutscene : FSMState
     private GameObject positionToReach = null;
     private bool positionIsReached = false;
 
-    private const string idleAnimation = "Player_idle";
-    private const string runAnimation = "Player_run";
 
     public override FSMState GetNext()
     {
@@ -19,7 +17,8 @@ public class PlayerStateCutscene : FSMState
 
     public override void OnEnterState()
     {
-        player.PlayAnim(runAnimation);
+        player.PlayAnim(Player.runAnimation);
+        // TODO : What if player is mid jumping? => wait for change of states
     }
 
     public override void StateFixedUpdate()
@@ -37,7 +36,7 @@ public class PlayerStateCutscene : FSMState
             {
                 positionIsReached = true;
                 player.FreezeHorizontalMovement();
-                player.PlayAnim(idleAnimation);
+                player.PlayAnim(Player.idleAnimation);
             }
         }
     }

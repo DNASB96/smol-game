@@ -6,7 +6,6 @@ public class PlayerStateIdle : FSMState
 {
     private Player player;
     private InputPreferencesScript inputPreferences;
-    private const string idleAnimation = "Player_idle";
 
     public override FSMState GetNext()
     {
@@ -18,7 +17,7 @@ public class PlayerStateIdle : FSMState
     
     public override void OnEnterState()
     {
-        player.PlayAnim(idleAnimation);
+        player.PlayAnim(Player.idleAnimation);
     }
 
     public override void StateFixedUpdate()
