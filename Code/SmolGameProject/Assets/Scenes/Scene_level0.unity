@@ -3711,8 +3711,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e59c72772b679c4c8b0f39ab191a1d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionToReachPlayer: {fileID: 0}
-  positionToReachCamera: {fileID: 0}
+  positionToReachPlayer: {fileID: 1299387877}
+  positionToReachCamera: {fileID: 793377412}
   sentences: []
 --- !u!1 &1475607598
 GameObject:
