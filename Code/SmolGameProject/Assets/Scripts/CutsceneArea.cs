@@ -29,7 +29,11 @@ public class CutsceneArea : MonoBehaviour
 
     private bool _hasBeenTriggered = false;
 
+    // Reference to player to tell it how to behave during the cutscene
     private Player _player;
+
+    // Reference to camera to tell it how to behave during the cutscene
+    private CameraController _cameraController;
 
     // Property to tell the player the cutscene / dialog is finished and the game can resume playing
     private bool _isFinished = false;
@@ -40,6 +44,7 @@ public class CutsceneArea : MonoBehaviour
     {
         _dialogUI = DialogUIScript.Instance;
         _player = Player.Instance;
+        _cameraController = CameraController.Instance;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -48,7 +53,10 @@ public class CutsceneArea : MonoBehaviour
         if (!_hasBeenTriggered)
         {
             _hasBeenTriggered = true;
-            _player.TriggerCutscene(_positionToReachPlayer);
+            _player.TriggerCutscene(_positionToReachPlayer.transform);
+
+            // trigger camera change
+            //_cameraController.ChangeToCutsceneMode(_positionToReachCamera);
         }
     }
 

@@ -194,7 +194,7 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Cutscene utilities
-    public void TriggerCutscene(GameObject positionToReach)
+    public void TriggerCutscene(Transform positionToReach)
     {
         //_cutsceneState.SetPositionToReach(positionToReach);
         //_currentState = _cutsceneState;
