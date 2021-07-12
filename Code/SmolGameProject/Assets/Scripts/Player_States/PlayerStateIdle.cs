@@ -9,6 +9,7 @@ public class PlayerStateIdle : FSMState
 
     public override FSMState GetNext()
     {
+        if (_player.TriggeredCutscene && _player.IsGrounded) return _player.CutsceneState;
         if (_inputManager.GetInput(_inputManager.JumpKey)) return _player.JumpState;
         if (!_player.IsGrounded) return _player.AirborneState;
         if (_inputManager.GetInput(_inputManager.RightKey) || _inputManager.GetInput(_inputManager.LeftKey)) return _player.RunState;

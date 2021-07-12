@@ -24,8 +24,8 @@ public class PlayerStateJump : FSMState
         if (_player.IsGrounded) _player.Jump();
 
         // Airborne control
-        if (_inputManager.GetInput(_inputManager.RightKey)) _player.Run(1);
-        else if (_inputManager.GetInput(_inputManager.LeftKey)) _player.Run(-1);
+        if (_inputManager.GetInput(_inputManager.RightKey)) _player.Run(true);
+        else if (_inputManager.GetInput(_inputManager.LeftKey)) _player.Run(false);
         else _player.FreezeHorizontalMovement();
     }
 

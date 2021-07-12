@@ -31,6 +31,11 @@ public class CutsceneArea : MonoBehaviour
 
     private Player _player;
 
+    // Property to tell the player the cutscene / dialog is finished and can resume playing
+    private bool _isFinished = false;
+
+    public bool IsFinished { get { return _isFinished; } }
+
     private void Start()
     {
         _dialogUI = DialogUIScript.Instance;

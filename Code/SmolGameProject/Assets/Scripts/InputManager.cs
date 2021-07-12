@@ -35,6 +35,8 @@ public class InputManager : MonoBehaviour
     public InputKey InteractKey { get { return _interactKey; } }
     public InputKey AttackKey { get { return _attackKey; } }
     public InputKey AttackSpeKey { get { return _attackSpeKey; } }
+
+    private List<InputKey> _controls;
     #endregion
 
     #region Lock input
@@ -50,13 +52,24 @@ public class InputManager : MonoBehaviour
         } else {
             _instance = this;
         }
+
+        _controls = new List<InputKey>();
+        _controls.Add(_leftKey);
+        _controls.Add(_rightKey);
+        _controls.Add(_upKey);
+        _controls.Add(_downKey);
+        _controls.Add(_jumpKey);
+        _controls.Add(_menuKey);
+        _controls.Add(_interactKey);
+        _controls.Add(_attackKey);
+        _controls.Add(_attackSpeKey);
     }
 
     public bool GetInput(InputKey k)
     {
         if (_inputIsLocked)
         {
-            return false;
+            return k.CachedWasDown;
         }
         else
         {
@@ -68,7 +81,7 @@ public class InputManager : MonoBehaviour
     {
         if (_inputIsLocked)
         {
-            return k.CachedIsDown;
+            return false;
         }
         else
         {
@@ -84,7 +97,12 @@ public class InputManager : MonoBehaviour
     public void LockInput()
     {
         _inputIsLocked = true;
-    }
+        // Cache the input for each key ; used for completing jump
+        foreach (InputKey k in _controls)
+        {
+            k.CacheInput();
+        }
+}
 
     public void UnlockInput()
     {

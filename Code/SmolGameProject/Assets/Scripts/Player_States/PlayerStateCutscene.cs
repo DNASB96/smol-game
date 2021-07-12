@@ -17,32 +17,35 @@ public class PlayerStateCutscene : FSMState
     public override void OnEnterState()
     {
         _player.PlayAnim(Player.runAnimation);
+        Debug.Log("Woaw");
         // TODO : What if player is mid jumping? => wait for change of states
     }
 
     public override void StateFixedUpdate()
     {
-        // run movement utilities
+        // Make the player run to his cutscene position
         if (!_positionIsReached)
         {
             if (_player.transform.position.x < _positionToReach.transform.position.x)
-                _player.Run(1);
+                _player.Run(true);
             else
-                _player.Run(-1);
+                _player.Run(false);
 
             // Check if the player is close enough (2 pixels) to the position
             if (Mathf.Abs(_player.transform.position.x - _positionToReach.transform.position.x) < 0.02)
             {
+                // Turn the player towards the npc and make him idle
                 _positionIsReached = true;
                 _player.FreezeHorizontalMovement();
                 _player.PlayAnim(Player.idleAnimation);
+                _player.Turn(true);
             }
         }
     }
 
     public override void StateUpdate()
     {
-        // Turn the player towards the npc
+        
     }
 
     public void SetPositionToReach(GameObject o)

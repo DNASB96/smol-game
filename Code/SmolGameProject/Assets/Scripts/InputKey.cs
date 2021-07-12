@@ -11,20 +11,25 @@ public class InputKey
     **/
 
     private KeyCode _preferredKey;
-    private bool _cachedIsDown { get; }
+    private bool _cachedWasDown;
 
     public KeyCode PrefferedKey { get { return _preferredKey; } }
-    public bool CachedIsDown { get { return _cachedIsDown; } }
+    public bool CachedWasDown { get { return _cachedWasDown; } }
 
     public InputKey(KeyCode c)
     {
         _preferredKey = c;
-        _cachedIsDown = false;
+        _cachedWasDown = false;
     }
 
     public void ChangePreferredKey(KeyCode c)
     {
         // Todo : go through property set instead and make verification that keycode isnt used in another setting
         _preferredKey = c;
+    }
+
+    public void CacheInput()
+    {
+        _cachedWasDown = Input.GetKey(_preferredKey);
     }
 }

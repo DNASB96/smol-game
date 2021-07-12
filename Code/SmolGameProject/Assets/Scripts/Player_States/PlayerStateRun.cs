@@ -9,6 +9,7 @@ public class PlayerStateRun : FSMState
 
     public override FSMState GetNext()
     {
+        if (_player.TriggeredCutscene && _player.IsGrounded) return _player.CutsceneState;
         if (_inputManager.GetInput(_inputManager.JumpKey)) return _player.JumpState;
         if (!_player.IsGrounded) return _player.AirborneState;
         if (_inputManager.GetInput(_inputManager.RightKey) || _inputManager.GetInput(_inputManager.LeftKey)) return this;
@@ -22,8 +23,8 @@ public class PlayerStateRun : FSMState
 
     public override void StateFixedUpdate()
     {
-        if (_inputManager.GetInput(_inputManager.RightKey)) _player.Run(1);
-        if (_inputManager.GetInput(_inputManager.LeftKey)) _player.Run(-1);
+        if (_inputManager.GetInput(_inputManager.RightKey)) _player.Run(true);
+        if (_inputManager.GetInput(_inputManager.LeftKey)) _player.Run(false);
     }
 
     public override void StateUpdate()
