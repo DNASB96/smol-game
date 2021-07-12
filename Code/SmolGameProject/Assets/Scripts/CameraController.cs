@@ -21,9 +21,11 @@ public class CameraController : MonoBehaviour
     #region Camera Modes
     private CameraState _currentMode;
     private CameraStateFollowPlayer _followPlayerMode;
+    private CameraStateCutscene _cutsceneMode;
 
     public CameraState CurrentMode { get { return _currentMode; } }
     public CameraStateFollowPlayer FollowPlayerMode { get { return _followPlayerMode; } }
+    public CameraStateCutscene CutsceneMode { get { return _cutsceneMode; } }
     #endregion
 
     private void Awake()
@@ -40,11 +42,18 @@ public class CameraController : MonoBehaviour
         }
 
         _followPlayerMode = new CameraStateFollowPlayer(this, _objectToFollow);
+        _cutsceneMode = new CameraStateCutscene(this);
         _currentMode = _followPlayerMode;
     }
 
     private void Update()
     {
         _currentMode.StateUpdate();
+    }
+
+    public void ChangeToCutsceneMode(Transform cameraPostion)
+    {
+        _cutsceneMode.SetPositionToReach(cameraPostion);
+        _currentMode = _cutsceneMode;
     }
 }

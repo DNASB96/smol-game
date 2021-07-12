@@ -56,7 +56,7 @@ public class CutsceneArea : MonoBehaviour
             _player.TriggerCutscene(_positionToReachPlayer.transform);
 
             // trigger camera change
-            //_cameraController.ChangeToCutsceneMode(_positionToReachCamera);
+            _cameraController.ChangeToCutsceneMode(_positionToReachCamera.transform);
         }
     }
 
