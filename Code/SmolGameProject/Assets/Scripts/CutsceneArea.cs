@@ -31,7 +31,7 @@ public class CutsceneArea : MonoBehaviour
 
     private Player _player;
 
-    // Property to tell the player the cutscene / dialog is finished and can resume playing
+    // Property to tell the player the cutscene / dialog is finished and the game can resume playing
     private bool _isFinished = false;
 
     public bool IsFinished { get { return _isFinished; } }

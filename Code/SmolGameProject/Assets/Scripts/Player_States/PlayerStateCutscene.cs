@@ -17,8 +17,6 @@ public class PlayerStateCutscene : FSMState
     public override void OnEnterState()
     {
         _player.PlayAnim(Player.runAnimation);
-        Debug.Log("Woaw");
-        // TODO : What if player is mid jumping? => wait for change of states
     }
 
     public override void StateFixedUpdate()

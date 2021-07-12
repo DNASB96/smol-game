@@ -22,7 +22,6 @@ public class CameraController : MonoBehaviour
     private CameraState _currentMode;
     private CameraStateFollowPlayer _followPlayerMode;
 
-
     public CameraState CurrentMode { get { return _currentMode; } }
     public CameraStateFollowPlayer FollowPlayerMode { get { return _followPlayerMode; } }
     #endregion
