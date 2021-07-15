@@ -21,10 +21,11 @@ public class CutsceneArea : MonoBehaviour
     private DialogUIScript _dialogUI;
 
     // Collection of dialog lines that will appear when the panel is interacted with.
-    //public string[] sentences;
+    [SerializeField] private string[] _speaker;
+    [SerializeField] private string[] _sentences;
 
     // Index to keep track of the current displayed sentence.
-    //private int sentences_index = 0;
+    private int _sentences_index = 0;
     #endregion
 
     private bool _hasBeenTriggered = false;
@@ -35,16 +36,43 @@ public class CutsceneArea : MonoBehaviour
     // Reference to camera to tell it how to behave during the cutscene
     private CameraController _cameraController;
 
-    // Property to tell the player the cutscene / dialog is finished and the game can resume playing
-    private bool _isFinished = false;
+    // Input manager
+    private InputManager _inputManager;
 
-    public bool IsFinished { get { return _isFinished; } }
+    // Property to tell the player the cutscene / dialog is finished and the game can resume playing
+    //private bool _isFinished = false;
+    //public bool IsFinished { get { return _isFinished; } }
 
     private void Start()
     {
         _dialogUI = DialogUIScript.Instance;
         _player = Player.Instance;
         _cameraController = CameraController.Instance;
+        _inputManager = InputManager.Instance;
+    }
+
+    private void Update()
+    {
+        if (_player.CurrentState == _player.CutsceneState && _player.CutsceneState.PositionIsReached)
+        {
+            // Dialog
+            if (_inputManager.GetInputDown(_inputManager.InteractKey))
+            {
+                if (_sentences_index < _sentences.Length)
+                {
+                    _dialogUI.DisplayNextSentence(_speaker[_sentences_index] + " : " + _sentences[_sentences_index]);
+                    _sentences_index++;
+                }
+                else
+                {
+                    // Finish Cutscene
+                    _dialogUI.EndDialog();
+                    // Todo : move this code after fight scene + make camera transition smoothly to player
+                    _player.FreeFromCutscene();
+                    _cameraController.ChangeToFollowPlayerMode();
+                }
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

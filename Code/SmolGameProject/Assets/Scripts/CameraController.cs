@@ -56,4 +56,9 @@ public class CameraController : MonoBehaviour
         _cutsceneMode.SetPositionToReach(cameraPostion);
         _currentMode = _cutsceneMode;
     }
+
+    public void ChangeToFollowPlayerMode()
+    {
+        _currentMode = _followPlayerMode;
+    }
 }

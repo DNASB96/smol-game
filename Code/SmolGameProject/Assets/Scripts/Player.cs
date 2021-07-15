@@ -196,14 +196,22 @@ public class Player : MonoBehaviour
     #region Cutscene utilities
     public void TriggerCutscene(Transform positionToReach)
     {
-        //_cutsceneState.SetPositionToReach(positionToReach);
-        //_currentState = _cutsceneState;
-        // OnEnterState will not be called in the update function, so it is called now.
-        //_currentState.OnEnterState();
-
         _cutsceneState.SetPositionToReach(positionToReach);
         _triggeredCutscene = true;
         _inputManager.LockInput();
+    }
+
+    public void PrepareForDialog()
+    {
+        FreezeHorizontalMovement();
+        PlayAnim(idleAnimation);
+        Turn(true);
+        _inputManager.UnlockInput();
+    }
+
+    public void FreeFromCutscene()
+    {
+        _triggeredCutscene = false;
     }
     #endregion
 }

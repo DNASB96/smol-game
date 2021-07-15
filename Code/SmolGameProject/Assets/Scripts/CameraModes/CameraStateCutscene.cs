@@ -6,11 +6,13 @@ public class CameraStateCutscene : CameraState
 {
     private readonly CameraController _cameraController;
     private Vector3 _positionToReach;
+
+    // camera velocity during the transition
     private Vector3 _cameraVelocity = Vector3.zero;
 
     public override void StateUpdate()
     {
-        _cameraController.transform.position = Vector3.SmoothDamp(_cameraController.transform.position, _positionToReach, ref _cameraVelocity, 0.4f);
+        _cameraController.transform.position = Vector3.SmoothDamp(_cameraController.transform.position, _positionToReach, ref _cameraVelocity, 0.3f);
     }
 
     public CameraStateCutscene(CameraController c)

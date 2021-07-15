@@ -14,7 +14,7 @@ public class CameraStateFollowPlayer : CameraState
 
     public override void StateUpdate()
     {
-        // update the position of the camera depending on the object position.
+        // Check for level left and right boundaries so that camera does not goes beyond
         if (_Xpos < 0)
         {
             _Xpos = Mathf.Max(_leftLim, _objectToFollow.transform.position.x);
@@ -23,6 +23,7 @@ public class CameraStateFollowPlayer : CameraState
         {
             _Xpos = Mathf.Min(_rightLim, _objectToFollow.transform.position.x);
         }
+
         _cameraController.transform.position = new Vector3(_Xpos, _cameraController.transform.position.y, -10);
     }
 

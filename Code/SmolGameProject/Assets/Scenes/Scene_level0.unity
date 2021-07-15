@@ -2840,7 +2840,7 @@ PrefabInstance:
     - target: {fileID: 8418166601494029846, guid: 6d9d92dd326b51b45a2a480345cc704b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.3
+      value: 1.667
       objectReference: {fileID: 0}
     - target: {fileID: 8418166601494029846, guid: 6d9d92dd326b51b45a2a480345cc704b,
         type: 3}
@@ -3748,6 +3748,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _positionToReachPlayer: {fileID: 1299387877}
   _positionToReachCamera: {fileID: 793377412}
+  _speaker:
+  - Lamia
+  - Player
+  - Lamia
+  _sentences:
+  - Hello there little human... are you lost ?
+  - Huh?!? A talking snake person? Am i dreaming?
+  - Nope...
 --- !u!1 &1475607598
 GameObject:
   m_ObjectHideFlags: 0

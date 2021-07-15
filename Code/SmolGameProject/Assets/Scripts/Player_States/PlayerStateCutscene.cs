@@ -8,10 +8,12 @@ public class PlayerStateCutscene : FSMState
     private Transform _positionToReach = null;
     private bool _positionIsReached = false;
 
+    public bool PositionIsReached { get { return _positionIsReached; } }
+
     public override FSMState GetNext()
     {
+        if (!_player.TriggeredCutscene) return _player.IdleState;
         return this;
-        // Todo : return to other state when cutscene ends
     }
 
     public override void OnEnterState()
@@ -34,9 +36,7 @@ public class PlayerStateCutscene : FSMState
             {
                 // Turn the player towards the npc and make him idle
                 _positionIsReached = true;
-                _player.FreezeHorizontalMovement();
-                _player.PlayAnim(Player.idleAnimation);
-                _player.Turn(true);
+                _player.PrepareForDialog();
             }
         }
     }
